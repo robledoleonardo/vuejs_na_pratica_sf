@@ -1,0 +1,21 @@
+<html>
+	<head>
+		<title>Vue.js na prática</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			Vue.js na prática - {{GDG}}
+		</div>
+		<script>
+			var app = new Vue({
+				el: '#app',
+				data(){
+					return {
+						GDG:'GDG Sete Lagoas',
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

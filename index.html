@@ -1,0 +1,74 @@
+<html>
+	<head>
+		<title>VueJS</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+
+	</head>
+	<body>
+		<div id="app">
+			Olá meu nome é {{nome}}
+			<br>
+			<input type="text" v-model="nome">
+			<hr>
+			<h3>Estoque</h3>
+			<ul>
+				<li v-for="item in lista">
+					{{item.quantidade}} - {{item.nome}} 
+					<strong v-if="item.quantidade <= 0">Não tem no estoque</strong>
+					<input type="button" @click="item.quantidade += 1" value="+">
+					<input type="button" @click="item.quantidade -= 1" value="-">
+				</li>
+			</ul>
+			<span>TOTAL: {{total}}</span>
+			<hr>
+			<input type="text" v-model="item"> <input type="button" @click="addItem()" value="ADD ITEM">
+		</div>
+	
+		<script>
+			var app = new Vue({
+				el: '#app',
+				data(){
+					return {
+						nome:'Robledo Leonardo',
+						item:null,
+						lista: [
+							{
+								nome:"laranja",
+								quantidade: 0
+							},
+							{
+								nome:"leite",
+								quantidade: 3
+							},
+							{
+								nome:"banana",
+								quantidade: 2
+							}
+						]
+					}
+				},
+				computed:{
+					total(){
+						return this.lista.reduce(function(sum,item){
+							if(sum.quantidade != undefined){
+								sum = sum.quantidade
+							}
+
+							return sum + item.quantidade
+						})
+					}
+				},
+				methods:{
+					addItem(){
+						this.lista.push({
+							nome:this.item,
+							quantidade:0
+						})
+
+						this.item = null
+					}
+				}
+			});
+		</script>
+	</body>
+</html>
